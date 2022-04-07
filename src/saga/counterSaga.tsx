@@ -1,5 +1,5 @@
 import { put, takeEvery } from "@redux-saga/core/effects";
-import { asyncIncrementAction, decrementAction, incrementAction } from "../store/countReducer";
+import { decrementAction, incrementAction } from "../store/countReducer";
 
 import { ASYNC_DECREMENT, ASYNC_INCREMENT } from "../store/typesAction";
 
