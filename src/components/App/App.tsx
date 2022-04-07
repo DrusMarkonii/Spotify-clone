@@ -9,6 +9,8 @@ import { loadingUserSuccessAction, logOutUserAction } from "../../store/action-c
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import { render } from "@testing-library/react";
+import Header from "../Header/Header";
+import HomePage from "../HomePage/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ function App() {
     dispatch(logOutUserAction())
     localStorage.clear();
     setIsLogBtn(false)
+    navigate("/");
     
   }
 
@@ -40,7 +43,7 @@ function App() {
       localStorage.setItem("accessToken", access_token);
       localStorage.setItem("tokenType", token_type);
       localStorage.setItem("expiresIn", `${expires_in}`);
-      navigate("/webapp");
+      navigate("/");
       dispatch(
         loadingUserSuccessAction({ access_token, token_type, expires_in })
       );
@@ -58,19 +61,24 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/auth/login"
         element={
           <>
-            {localStorage.getItem("accessToken") ?
+          
+          <div>
+          {localStorage.getItem("accessToken") ?
               <button onClick={handelLogout}> Log Out Spotify</button>
              
             :
             <button onClick={handelLogin}> Log in Spotify</button>
             }
+          </div>
+            
           </>
         }
       />
-      <Route path="/webapp" element={<Counter />} />
+       <Route path="/" element={<HomePage />} />
+      <Route path="/entertainment" element={<Counter />} />
     </Routes>
   );
 }
