@@ -8,59 +8,61 @@ import { useEffect, useState } from "react";
 import { loadingUserSuccessAction, logOutUserAction } from "../../store/action-creators/user";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
-import { render } from "@testing-library/react";
-import Header from "../Header/Header";
-import HomePage from "../HomePage/HomePage";
+import WebApp from "../WebApp/WebApp";
+// import { render } from "@testing-library/react";
+// import Header from "../Header/Header";
+// import HomePage from "../HomePage/HomePage";
+// import PlayList from "../PlayList/PlayList";
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   
-  const user = useSelector((state: RootState) => {
-    return state.user;
-  });
-  const [isLogBtn, setIsLogBtn] = useState(true)
-  console.log(user);
-  const { hash } = useLocation();
-  const navigate = useNavigate();
-  const apiURL = getAuthorizeUrl();
+  // const user = useSelector((state: RootState) => {
+  //   return state.user;
+  // });
+  // const [isLogBtn, setIsLogBtn] = useState(true)
+  // console.log(user);
+  // const { hash } = useLocation();
+  // const navigate = useNavigate();
+  // const apiURL = getAuthorizeUrl();
 
-  function handelLogin() {
-    window.location.href = `${apiURL}`;
-  }
+  // function handelLogin() {
+  //   window.location.href = `${apiURL}`;
+  // }
 
-  function handelLogout() {
-    dispatch(logOutUserAction())
-    localStorage.clear();
-    setIsLogBtn(false)
-    navigate("/");
+  // function handelLogout() {
+  //   dispatch(logOutUserAction())
+  //   localStorage.clear();
+  //   setIsLogBtn(false)
+  //   navigate("/auth/login");
     
-  }
+  // }
 
-  useEffect(() => {
-    if (hash) {
-      const { access_token, token_type, expires_in } = getDataFromHash(hash);
-      localStorage.clear();
-      localStorage.setItem("accessToken", access_token);
-      localStorage.setItem("tokenType", token_type);
-      localStorage.setItem("expiresIn", `${expires_in}`);
-      navigate("/");
-      dispatch(
-        loadingUserSuccessAction({ access_token, token_type, expires_in })
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (hash) {
+  //     const { access_token, token_type, expires_in } = getDataFromHash(hash);
+  //     localStorage.clear();
+  //     localStorage.setItem("accessToken", access_token);
+  //     localStorage.setItem("tokenType", token_type);
+  //     localStorage.setItem("expiresIn", `${expires_in}`);
+  //     navigate("/");
+  //     dispatch(
+  //       loadingUserSuccessAction({ access_token, token_type, expires_in })
+  //     );
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
-      window.location.href = getAuthorizeUrl();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!localStorage.getItem("accessToken")) {
+  //     window.location.href = getAuthorizeUrl();
+  //   }
+  // }, []);
 
   
 
   return (
     <Routes>
-      <Route
+      {/* <Route
         path="/auth/login"
         element={
           <>
@@ -79,6 +81,8 @@ function App() {
       />
        <Route path="/" element={<HomePage />} />
       <Route path="/entertainment" element={<Counter />} />
+      <Route path="/music/playlist" element={<PlayList />} /> */}
+      <Route path="/webapp" element={<WebApp />} />
     </Routes>
   );
 }
