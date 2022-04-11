@@ -17,11 +17,19 @@ export default function MusicCard({
 }: MusicCardTypes) {
   return (
     <div className="music_card">
-      <div>img{img}</div>
-      <div>{track_name}</div>
-      <div>{author_name}</div>
       <div>
-        <ReactAudioPlayer className="audioPlayer" src={preview_music} controls />
+        <img className="card_img" src={img} alt={track_name} />
+      </div>
+      <div className="description_box">
+        <div>{track_name}</div>
+        <div>{author_name}</div>
+      </div>
+      <div>
+        <ReactAudioPlayer
+          className="audioPlayer"
+          src={preview_music}
+          controls
+        />
       </div>
     </div>
   );

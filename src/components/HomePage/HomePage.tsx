@@ -8,12 +8,17 @@ export default function HomePage() {
         <Header />
         </div>
         <div>
-            <h1>Подборка жанров</h1>
             <div>
-                <div>item</div>
-                <div>item</div>
-                <div>item</div>
-                <div>item</div>
+              <h3>Только для тебя</h3>
+              <div className='listForYou'>
+                  ------------
+              </div>
+            </div>
+            <div>
+              <h3>Любимые треки</h3>
+              <div className='favorite_tracks'>
+                  ------------
+              </div>
             </div>
         </div>
         
