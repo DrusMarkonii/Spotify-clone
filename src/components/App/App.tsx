@@ -9,6 +9,7 @@ import { loadingUserSuccessAction, logOutUserAction } from "../../store/action-c
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import WebApp from "../WebApp/WebApp";
+import ArtistPage from "../ArtistPage/ArtistPage";
 // import { render } from "@testing-library/react";
 // import Header from "../Header/Header";
 // import HomePage from "../HomePage/HomePage";
@@ -83,6 +84,8 @@ function App() {
       <Route path="/entertainment" element={<Counter />} />
       <Route path="/music/playlist" element={<PlayList />} /> */}
       <Route path="/webapp" element={<WebApp />} />
+      <Route path="/artist/:id" element={<ArtistPage />} />
+      
     </Routes>
   );
 }
