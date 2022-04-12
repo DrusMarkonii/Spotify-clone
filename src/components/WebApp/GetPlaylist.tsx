@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MusicCard from "../MusicCard/MusicCard";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/rootReducer";
+import { axiosPlaylistAction, getTokenAction } from "../../store/action-creators/user";
+import { getPlayList } from "../../service/endpoints";
 
-const MY_PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/me/playlists";
+
 const MY_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/tracks";
 const MY_PROFILE_ENDPOINT = "https://api.spotify.com/v1/me";
 const NEW_RELEASES = "https://api.spotify.com/v1/browse/featured-playlists";
@@ -12,17 +16,27 @@ const RECOMMENDATIONS_ENDPOINT = "https://api.spotify.com/v1/recommendations";
 const album_endP = "https://api.spotify.com/v1/albums";
 
 export default function GetPlaylist() {
-  const [token, setToken] = useState("");
+  
+  const USER = useSelector((state: RootState) => {
+    return state.user
+  })
+
+  const {token} = USER
+
+  console.log(USER)
+
+  const dispatch = useDispatch()
+  
   const [playList, setPlayList] = useState<any>("");
   const [tracks, setTracks] = useState<any>("");
   const [profile, setProfile] = useState<any>("");
   const [releases, newReleases] = useState<any>("");
   const [artist, setArtist] = useState<any>("");
   const [alb, setAlb] = useState<any>("");
-
+  
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
-      setToken(`${localStorage.getItem("accessToken")}`);
+      dispatch(getTokenAction(localStorage.getItem("accessToken")))
     }
   }, []);
 
@@ -46,16 +60,17 @@ export default function GetPlaylist() {
   }, [playList, tracks, profile, releases, artist, alb]);
 
   const handleGetPlayList = () => {
-    axios
-      .get(MY_PLAYLISTS_ENDPOINT, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((response) => {
-        setPlayList(response.data);
-      })
-      .catch((error) => console.log(error));
+    dispatch(axiosPlaylistAction())
+    // axios
+    //   .get(MY_PLAYLISTS_ENDPOINT, {
+    //     headers: {
+    //       Authorization: "Bearer " + token,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setPlayList(response.data);
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
   const handleTracks = () => {
@@ -149,6 +164,7 @@ export default function GetPlaylist() {
             ))
           : null}
       </div>
+
       <button onClick={handleTracks}>Get my tracks</button>
       {tracks?.items
         ? tracks.items.map((item: any) => (
@@ -219,37 +235,3 @@ export default function GetPlaylist() {
   );
 }
 
-// export const getRecommendations = async () => {
-//     try {
-//       const response = await api({
-//         method: "GET",
-//         url: "recommendations",
-//         headers: {
-//           Authorization: getAuthorization(),
-//         },
-//       });
-
-//       const newReleases = response.data;
-//       return newReleases;
-//     } catch (error: any) {
-//       throw new Error(error.response.message);
-//     }
-//   };
-
-// export const getUserTracks = async () => {
-//     try {
-//       const response = await api({
-//         method: "GET",
-//         url: "me/tracks",
-//         headers: {
-//           Authorization: getAuthorization(),
-//         },
-//       });
-//       return response.data;
-//     } catch (error: any) {
-//       if (error.response.status === 400 || error.response.status === 401)
-//         window.location.href = getAuthorizeUrl();
-
-//       throw new Error(error.response.message);
-//     }
-//   };

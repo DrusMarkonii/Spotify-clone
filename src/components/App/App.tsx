@@ -5,89 +5,58 @@ import Counter from "../Counter";
 import { getAuthorizeUrl, getDataFromHash } from "../../service/authorization";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { loadingUserSuccessAction, logOutUserAction } from "../../store/action-creators/user";
+
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import WebApp from "../WebApp/WebApp";
 import ArtistPage from "../ArtistPage/ArtistPage";
+import HomePage from "../HomePage/HomePage";
+import MusicPage from "../MusicPage/MusicPage";
+import PlaylistPage from "../PlaylistPage/PlaylistPage";
+import EntertainmentPage from "../EntertainmentPage/EntertainmentPage";
 // import { render } from "@testing-library/react";
 // import Header from "../Header/Header";
 // import HomePage from "../HomePage/HomePage";
 // import PlayList from "../PlayList/PlayList";
 
-function App() {
-  // const dispatch = useDispatch();
+export default function App() {
+  useEffect(() => {
+    if (window.location.hash) {
+      const { access_token, token_type, expires_in } = getDataFromHash(
+        window.location.hash
+      );
+      localStorage.clear();
+      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("tokenType", token_type);
+      localStorage.setItem("expiresIn", `${expires_in}`);
+    }
+  }, []);
+  const getDataFromHash = (hash: string) => {
+    const arr = hash.slice(1).split("&");
+    const access_token = arr[0].slice(13);
+    const token_type = arr[1].slice(11);
+    const expires_in = +arr[2].slice(11);
+    return {
+      access_token,
+      token_type,
+      expires_in,
+    };
+  };
+
+  const handleLogin = () => {
+    window.location.href = getAuthorizeUrl();
+  };
   
-  // const user = useSelector((state: RootState) => {
-  //   return state.user;
-  // });
-  // const [isLogBtn, setIsLogBtn] = useState(true)
-  // console.log(user);
-  // const { hash } = useLocation();
-  // const navigate = useNavigate();
-  // const apiURL = getAuthorizeUrl();
-
-  // function handelLogin() {
-  //   window.location.href = `${apiURL}`;
-  // }
-
-  // function handelLogout() {
-  //   dispatch(logOutUserAction())
-  //   localStorage.clear();
-  //   setIsLogBtn(false)
-  //   navigate("/auth/login");
-    
-  // }
-
-  // useEffect(() => {
-  //   if (hash) {
-  //     const { access_token, token_type, expires_in } = getDataFromHash(hash);
-  //     localStorage.clear();
-  //     localStorage.setItem("accessToken", access_token);
-  //     localStorage.setItem("tokenType", token_type);
-  //     localStorage.setItem("expiresIn", `${expires_in}`);
-  //     navigate("/");
-  //     dispatch(
-  //       loadingUserSuccessAction({ access_token, token_type, expires_in })
-  //     );
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!localStorage.getItem("accessToken")) {
-  //     window.location.href = getAuthorizeUrl();
-  //   }
-  // }, []);
-
-  
-
   return (
-    <Routes>
-      {/* <Route
-        path="/auth/login"
-        element={
-          <>
-          
-          <div>
-          {localStorage.getItem("accessToken") ?
-              <button onClick={handelLogout}> Log Out Spotify</button>
-             
-            :
-            <button onClick={handelLogin}> Log in Spotify</button>
-            }
-          </div>
-            
-          </>
-        }
-      />
-       <Route path="/" element={<HomePage />} />
-      <Route path="/entertainment" element={<Counter />} />
-      <Route path="/music/playlist" element={<PlayList />} /> */}
-      <Route path="/webapp" element={<WebApp />} />
-      <Route path="/artist/:id" element={<ArtistPage />} />
-      
-    </Routes>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/music" element={<MusicPage />} />
+        <Route path="/playlists" element={<PlaylistPage />} />
+        <Route path="/entertainment" element={<EntertainmentPage />} />
+        <Route path="/webapp" element={<WebApp />} />
+        <Route path="/artist/:id" element={<ArtistPage />} />
+      </Routes>
+    </div>
   );
 }
-
-export default App;

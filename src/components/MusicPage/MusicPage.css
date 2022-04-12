@@ -1,0 +1,4 @@
+.musicList {
+    display: flex;
+    flex-wrap: wrap;
+}
