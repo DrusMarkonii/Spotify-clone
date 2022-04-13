@@ -12,6 +12,11 @@ import Header from "../Header/Header";
 
 import "./EntertainmentPage.css";
 
+type userMapType = {
+  id: number;
+  name: string;
+};
+
 export default function EntertainmentPage() {
   const counter = useSelector((state: RootState) => {
     return state.counter.counter;
@@ -61,7 +66,7 @@ export default function EntertainmentPage() {
         <div className="users-box">
           {users.length > 0 ? (
             <ul className="users-box-list">
-              {users.map(({ name, id }: any) => (
+              {users.map(({ name, id }: userMapType) => (
                 <li className="users-box-item" key={id}>
                   {name}
                 </li>

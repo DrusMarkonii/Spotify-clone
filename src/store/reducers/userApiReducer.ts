@@ -10,7 +10,6 @@ import {
 
 const defaultStateUser: defaultStateUserType = {
   token: null,
-  myPlaylist: null,
   myTracks: null,
   myData: null,
   newReleases: null,
@@ -24,11 +23,6 @@ const USER_Reducer = (state = defaultStateUser, action: any) => {
       return {
         ...state,
         token: action.payload,
-      };
-    case GET_MY_PLAYLIST:
-      return {
-        ...state,
-        myPlaylist: action.payload,
       };
     case GET_MY_DATA:
       return {

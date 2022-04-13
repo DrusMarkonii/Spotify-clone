@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Key, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,25 @@ import Header from "../Header/Header";
 import MusicCard from "../MusicCard/MusicCard";
 
 import "./HomePage.css";
+
+type myTracksType = {
+  track: {
+    id: Key | null | undefined;
+    name: string;
+    album: { images: { url: string }[] };
+    artists: { name: string }[];
+    preview_url: string;
+  };
+};
+
+type myArtistsType = {
+  id: Key | null | undefined;
+  name: string;
+  images: { url: string }[];
+  type: any;
+  popularity: any;
+  followers: { total: any };
+};
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -29,6 +48,8 @@ export default function HomePage() {
     dispatch(axiosMyTracksAction());
   }, [dispatch]);
 
+  console.log(myTracks);
+
   return (
     <div>
       <Header />
@@ -37,7 +58,7 @@ export default function HomePage() {
           <div>
             <h3>Last listening</h3>
             <div className="favorite_tracks_lists">
-              {myTracks.items.map((item: any) => (
+              {myTracks.items.map((item: myTracksType) => (
                 <MusicCard
                   key={item.track.id}
                   track_name={item.track.name}
@@ -51,7 +72,7 @@ export default function HomePage() {
           <div className="artist-box">
             <h3>Artists</h3>
             <div className="artists_lists">
-              {myArtists.items.map((item: any) => (
+              {myArtists.items.map((item: myArtistsType) => (
                 <Link
                   className="artist-link"
                   key={item.id}
@@ -69,19 +90,26 @@ export default function HomePage() {
           <div className="recommendation-box">
             <h3>Recommendation</h3>
             <div className="recommendation_lists">
-              {newReleases.playlists.items.map((item: any) => (
-                <Link
-                  className="recommend-link"
-                  key={item.id}
-                  to={`/playlist/${item.id}`}
-                >
-                  <AlbumCard
-                    album_name={item.name}
-                    album_description={item.description}
-                    img={item.images[0].url}
-                  />
-                </Link>
-              ))}
+              {newReleases.playlists.items.map(
+                (item: {
+                  id: Key | null | undefined;
+                  name: string;
+                  description: string;
+                  images: { url: string }[];
+                }) => (
+                  <Link
+                    className="recommend-link"
+                    key={item.id}
+                    to={`/playlist/${item.id}`}
+                  >
+                    <AlbumCard
+                      album_name={item.name}
+                      album_description={item.description}
+                      img={item.images[0].url}
+                    />
+                  </Link>
+                )
+              )}
             </div>
           </div>
         </div>

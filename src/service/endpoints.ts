@@ -2,7 +2,6 @@ import axios from "axios";
 
 import { getAuthorizeUrl } from "./authorization";
 
-const MY_PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/me/playlists";
 const MY_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/tracks";
 const MY_PROFILE_ENDPOINT = "https://api.spotify.com/v1/me";
 const NEW_RELEASES = "https://api.spotify.com/v1/browse/featured-playlists";
@@ -31,20 +30,7 @@ export const getDataFromHash = (hash: string) => {
   };
 };
 
-export const getPlayList = async () => {
-  try {
-    const response = await axios.get(MY_PLAYLISTS_ENDPOINT, {
-      headers: {
-        Authorization: getAuthorization(),
-      },
-    });
-    return response.data;
-  } catch (err: any) {
-    if (err.response.status === 400 || err.response.status === 401)
-      window.location.href = getAuthorizeUrl();
-    console.log(err);
-  }
-};
+
 
 export const getMyTracks = async () => {
   try {

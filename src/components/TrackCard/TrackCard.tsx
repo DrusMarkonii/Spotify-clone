@@ -4,7 +4,7 @@ import "./TrackCard.css";
 type TrackCardTypes = {
   track_name: string;
   author_name: string;
-  preview_music: string;
+  preview_music: string ;
 };
 
 export default function TrackCard({
