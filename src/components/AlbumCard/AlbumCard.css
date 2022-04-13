@@ -1,0 +1,31 @@
+.album_card {
+    width: 200px;
+    height: 260px;
+    padding: 15px;
+    margin: 10px;
+    position: relative;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: rgba(27, 26, 26, 0.658);
+    color:rgb(163, 163, 162)
+  }
+  
+
+  .album-card_img{
+      width: 100%;
+      border-radius: 6px;
+  }
+  
+  .album_description_box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      word-wrap: break-word;
+      font-size: small;
+  }
+  
+  .album_description_box:hover {
+    font-size:large;
+    transition: .5s;
+  }
+ 

@@ -4,8 +4,9 @@ import MusicCard from "../MusicCard/MusicCard";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
-import { axiosMyDataAction, axiosMyTracksAction, axiosNewReleasesAction, axiosPlaylistAction, getTokenAction } from "../../store/action-creators/user";
+import { axiosMyArtistAction, axiosMyDataAction, axiosMyTracksAction, axiosNewReleasesAction, axiosPlaylistAction, getTokenAction } from "../../store/action-creators/user";
 import { getNewReleases, getPlayList } from "../../service/endpoints";
+
 
 
 const MY_PROFILE_ENDPOINT = "https://api.spotify.com/v1/me";
@@ -20,9 +21,8 @@ export default function GetPlaylist() {
     return state.user
   })
 
-  const {token} = USER
-
-  console.log(USER)
+  
+  const {token, myArtists} = USER
 
   const dispatch = useDispatch()
   
@@ -32,6 +32,7 @@ export default function GetPlaylist() {
   // const [releases, newReleases] = useState<any>("");
   const [artist, setArtist] = useState<any>("");
   const [alb, setAlb] = useState<any>("");
+
   
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -43,19 +44,12 @@ export default function GetPlaylist() {
     if (artist) {
       const artistIdList: any = [];
       artist.items.map(({ id }: any) => artistIdList.push(id));
-      console.log(artistIdList);
+      
     }
   }, [artist]);
 
-  useEffect(() => {
-    // console.log("data", playList);
-    // console.log("tracks", tracks);
-    // console.log("profile", profile);
-    // console.log("releases", releases);
-    console.log("artist", artist);
-    console.log("alb", alb);
-    console.log("-------   --------- -------- ");
-  }, [ artist, alb]);
+ 
+ 
 
   const handleGetPlayList = () => {
     dispatch(axiosPlaylistAction())
@@ -71,36 +65,11 @@ export default function GetPlaylist() {
   };
 
   const handleNewReleases = () => {
-    dispatch(axiosNewReleasesAction())
-    // axios
-    //   .get(NEW_RELEASES, {
-    //     params: {
-    //       limit: 10,
-    //     },
-    //     headers: {
-    //       Authorization: "Bearer " + token,
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then((response) => {
-    //     newReleases(response.data);
-    //   });
+    dispatch(axiosNewReleasesAction())  
   };
 
   const handleGetArtists = () => {
-    axios
-      .get(ARTISTS_ENDPOINT, {
-        params: {
-          limit: 9,
-        },
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setArtist(response.data);
-      });
+    dispatch(axiosMyArtistAction())  
   };
 
   const handleAlb = () => {
@@ -123,31 +92,11 @@ export default function GetPlaylist() {
 
   return (
     <div>
-      
-
-      
-     
-      
-
-      <div>
-        <button onClick={handleNewReleases}>New Releases</button>
-        {/* {releases?.items
-          ? releases.items.map((item: any) => (
-              <MusicCard
-                key={item.id}
-                track_name={item.name}
-                img={item.images[1].url}
-                author_name={item.artists[0].name}
-                preview_music={""}
-              />
-            ))
-          : null} */}
-      </div>
 
       <div>
         <button onClick={handleGetArtists}>Get Artists</button>
-        {artist?.items
-          ? artist.items.map((item: any) => (
+        {myArtists?.items
+          ? myArtists.items.map((item: any) => (
             <Link key={item.id} to={`/artist/${item.id}`}>
               <MusicCard
                 key={item.id}

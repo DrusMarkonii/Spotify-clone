@@ -1,11 +1,17 @@
-.content-box {
-    display: flex;
-    flex-direction: column;
-    max-width:1280px;
-    width: 100%;
+.content_box.homePage {
+  display: flex;
+  flex-direction: column;
 }
 
-.content-box-item {
-    display: flex;
+.recommendation_lists,
+.artists_lists,
+.favorite_tracks_lists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
 
+.artist-link, .recommend-link {
+  text-decoration: none;
+}

@@ -8,6 +8,7 @@ import {
 import { RootState } from "../../store/rootReducer";
 import { fetchUsers } from "../../store/usersReducer";
 import Header from "../Header/Header";
+import './EntertainmentPage.css'
 
 export default function EntertainmentPage() {
   const counter = useSelector((state: RootState) => {
@@ -18,15 +19,12 @@ export default function EntertainmentPage() {
   });
   const dispatch = useDispatch();
   return (
-    <div>
+    <div >
       <Header />
-      <div>
-        <div>counter: {counter}</div>
+      <div className="entertainment_content_box">
+        <div className="counter">counter: {counter}</div>
         <div
-          style={{
-            display: "flex",
-            margin: "10px auto",
-          }}
+          className="btn-box"
         >
           <button
             onClick={() => dispatch(incrementAction())}
@@ -59,11 +57,12 @@ export default function EntertainmentPage() {
             GET USERS
           </button>
         </div>
-        <div>
+
+        <div className="users-box">
           {users.length > 0 ? (
-            <ul>
+            <ul className="users-box-list">
               {users.map(({ name, id }: any) => (
-                <li key={id}>{name}</li>
+                <li className="users-box-item" key={id}>{name}</li>
               ))}
             </ul>
           ) : (

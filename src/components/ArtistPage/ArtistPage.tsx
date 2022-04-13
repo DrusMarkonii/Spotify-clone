@@ -1,65 +1,92 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import MusicCard from '../MusicCard/MusicCard';
+import { useEffect, useMemo, useState } from "react";
 
+import {
+  getArtistAlbum,
+  getArtistData,
+  getArtistTopTracks,
+} from "../../service/endpoints";
+import AlbumCard from "../AlbumCard/AlbumCard";
+import Header from "../Header/Header";
+import TrackCard from "../TrackCard/TrackCard";
 
+import "./ArtistPage.css";
 
 export default function ArtistPage() {
-    const [artist, setArtist] = useState<any>(null)
-    const [album, setAlbum]= useState<any>(null)
-    const [token, setToken] = useState<any>(null)
+  const [artist, setArtist] = useState<any>(null);
+  const [idOfArtist, setIdOfArtist] = useState<string | null>(null);
+  const [album, setAlbum] = useState<any>(null);
+  const [topTracks, setTopTracks] = useState<any>(null);
 
+  // const idOfArtist = window.location.pathname.split("/")[2];
 
-    const idOfArtist = window.location.pathname.split('/')[2] || null
-    const ARTIST_ENDPOINT =`https://api.spotify.com/v1/artists/${idOfArtist}`
-    const ALBUM_OF_ARTIST = `https://api.spotify.com/v1/artists/${idOfArtist}/albums`
-      // console.log(idOfArtist)
-      // console.log('AAAAA' ,album)
+  const artistData = async (id: string) => {
+    const artist = await getArtistData(id);
+    setArtist(artist);
+  };
 
-    useEffect(() => {
-      setToken(() => localStorage.getItem("accessToken"))
-        axios
-      .get(ARTIST_ENDPOINT, {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setArtist(response.data);
-      });
-    },[token, ARTIST_ENDPOINT])
+  const artistAlbum = async (id: string) => {
+    const artistAlbum = await getArtistAlbum(id);
+    setAlbum(artistAlbum);
+  };
 
-    useEffect(() => {
-      axios
-      .get(ALBUM_OF_ARTIST, {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setAlbum(response.data);
-      });
-    },[ALBUM_OF_ARTIST, token])
+  const artistTopTracks = async (id: string) => {
+    const artistTopTracks = await getArtistTopTracks(id);
+    setTopTracks(artistTopTracks);
+  };
+
+  useEffect(() => {
+    setIdOfArtist(window.location.pathname.split("/")[2]);
+  }, []);
+
+  useMemo(() => {
+    if (idOfArtist) {
+      artistData(idOfArtist);
+      artistAlbum(idOfArtist);
+      artistTopTracks(idOfArtist);
+    }
+  }, [idOfArtist]);
+
   return (
     <div>
-        {(album === null) && (artist === null) ? 'Loading...' : <div>
-        <h3>{artist.name}</h3>
-        <img src={artist.images[1].url} alt={artist.name}/>
-        <div>Popularity: {artist.popularity}</div>
-
+      {album === null && artist === null && topTracks === null ? (
+        "Loading..."
+      ) : (
         <div>
-          {album?.items ? album.items.map((item:any) =>( <MusicCard
+          <Header />
+          <h3>{artist.name}</h3>
+          <img
+            src={artist.images[1].url}
+            alt={artist.name}
+            className="artist_img"
+          />
+          <div>Popularity: {artist.popularity}</div>
+
+          <div className="artistPage_tracks_box">
+            {topTracks?.tracks.map((item: any) => (
+              <TrackCard
                 key={item.id}
                 track_name={item.name}
-                img={item.images[1].url}
-                author_name={item.album_group}
-                preview_music={""}
-              />)): null}
+                author_name={item.artists[0].name}
+                preview_music={item.preview_url}
+              />
+            ))}
+          </div>
+
+          <div className="artistPage_album_box">
+            <h3>Albums</h3>
+            <div className="artistPage_album_list">
+              {album?.items.map((item: any) => (
+                <AlbumCard
+                  key={item.id}
+                  album_name={item.name}
+                  img={item.images[1].url}
+                  album_description={item.album_group}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-        </div> }
-        
+      )}
     </div>
-  )
+  );
 }

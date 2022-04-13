@@ -1,0 +1,14 @@
+.content-box_MusicPage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.album_img {
+    width: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

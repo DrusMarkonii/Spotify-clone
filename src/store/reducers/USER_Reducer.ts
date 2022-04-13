@@ -1,11 +1,12 @@
-import { defaultStateUserType, GET_MY_PLAYLIST, GET_TOKEN, GET_MY_TRACKS, GET_MY_DATA, GET_NEW_RELEASES} from "../types/userType";
+import { defaultStateUserType, GET_MY_PLAYLIST, GET_TOKEN, GET_MY_TRACKS, GET_MY_DATA, GET_NEW_RELEASES, GET_MY_ARTISTS} from "../types/userType";
 
 const defaultStateUser: defaultStateUserType = {
   token: null,
   myPlaylist: null,
   myTracks: null,
   myData: null,
-  newReleases: null
+  newReleases: null,
+  myArtists: null
 
 };
 
@@ -36,6 +37,11 @@ const USER_Reducer = (state = defaultStateUser, action: any) => {
       return {
         ...state,
         newReleases: action.payload
+      };
+      case GET_MY_ARTISTS:
+      return {
+        ...state,
+        myArtists: action.payload
       };
     default:
       return state;

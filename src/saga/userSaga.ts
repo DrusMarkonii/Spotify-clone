@@ -8,7 +8,6 @@ const fetchUsersFromApi:any = () => fetch("https://jsonplaceholder.typicode.com/
 function* fetchUserWorker():any {
   const data = yield call(fetchUsersFromApi);
   const json = yield call(() => new Promise((res) => res(data.json())));
-  console.log(json)
   yield put(setUsers(json));
 }
 

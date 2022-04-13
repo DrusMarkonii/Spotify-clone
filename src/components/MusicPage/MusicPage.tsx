@@ -1,15 +1,15 @@
-import Header from "../Header/Header";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-import "./MusicPage.css";
-import MusicCard from "../MusicCard/MusicCard";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import Header from "../Header/Header";
+import MusicCard from "../MusicCard/MusicCard";
 import { RootState } from "../../store/rootReducer";
 import {
   axiosMyDataAction,
   axiosMyTracksAction,
 } from "../../store/action-creators/user";
+
+import "./MusicPage.css";
 
 export default function MusicPage() {
   const dispatch = useDispatch();
@@ -18,33 +18,28 @@ export default function MusicPage() {
   });
   const { myTracks, myData } = USER;
 
-  useEffect(() => {
+  useMemo(() => {
     dispatch(axiosMyTracksAction());
     dispatch(axiosMyDataAction());
-    console.log(myData);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
+      <Header />
       {myTracks !== null && myData !== null ? (
         <div>
-          <Header />
-          <h3>
-            Your music, { myData.display_name}
-          </h3>
+          <h3>Your music, {myData.display_name}</h3>
           <div className="content_box musicPage">
             <div className="musicList">
-              {myTracks?.items
-                ? myTracks.items.map((item: any) => (
-                    <MusicCard
-                      key={item.track.id}
-                      track_name={item.track.name}
-                      img={item.track.album.images[1].url}
-                      author_name={item.track.artists[0].name}
-                      preview_music={item.track.preview_url}
-                    />
-                  ))
-                : null}
+              {myTracks.items.map((item: any) => (
+                <MusicCard
+                  key={item.track.id}
+                  track_name={item.track.name}
+                  img={item.track.album.images[1].url}
+                  author_name={item.track.artists[0].name}
+                  preview_music={item.track.preview_url}
+                />
+              ))}
             </div>
           </div>
         </div>
