@@ -12,6 +12,7 @@
   width: 100%;
 }
 
-.artist-link, .recommend-link {
+.artist-link,
+.recommend-link {
   text-decoration: none;
 }

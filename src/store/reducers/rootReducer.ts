@@ -2,9 +2,8 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { rootWatcher } from "../saga/rootWatcher";
 import counterReducer from "./countReducer";
-import userReducerJson from "./usersReducer";
-import USER_Reducer from "./reducers/USER_Reducer";
-
+import userReducerJson from "./usersJSONReducer";
+import USER_Reducer from "./userApiReducer";
 
 const rootReducer = combineReducers({
   counter: counterReducer,

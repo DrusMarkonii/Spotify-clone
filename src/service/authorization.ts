@@ -53,4 +53,3 @@ export const setDataInLocalStorage = () => {
     localStorage.setItem("expiresIn", `${expires_in}`);
   }
 };
-

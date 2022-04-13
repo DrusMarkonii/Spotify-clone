@@ -1,6 +1,5 @@
-import React from "react";
 import ReactAudioPlayer from "react-audio-player";
-import './TrackCard.css'
+import "./TrackCard.css";
 
 type TrackCardTypes = {
   track_name: string;
@@ -16,7 +15,9 @@ export default function TrackCard({
   return (
     <div className="track_card">
       <div className="track_card_description_box">
-        <div><b>{author_name}</b></div>
+        <div>
+          <b>{author_name}</b>
+        </div>
         <div>{track_name}</div>
       </div>
       <div className="track_card_player">

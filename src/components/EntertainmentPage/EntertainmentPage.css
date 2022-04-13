@@ -1,51 +1,51 @@
 .entertainment_content_box {
-    display: flex;
-    flex-direction: column;
-    margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
 }
 
 .btn-box {
-    margin: 50px auto;
+  margin: 50px auto;
 }
 
 .users-box-list {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-    max-width: 500px;
-    list-style: none;
-
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 500px;
+  list-style: none;
 }
+
 .users-box-item {
-    display: flex;
-    width: 100%;
-    max-width: 500px;
-    margin-right: auto;
-    background-color: antiquewhite;
-    color: black;
-    margin-bottom: 3px;
-    padding: 5px 10px
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  margin-right: auto;
+  background-color: antiquewhite;
+  color: black;
+  margin-bottom: 3px;
+  padding: 5px 10px;
 }
 
 .users-box-item:hover {
-    background-color: rgb(124, 118, 118);
-    color: white;
+  background-color: rgb(124, 118, 118);
+  color: white;
 }
 
 .btn-box > button {
-    height: 40px;
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: rgb(211, 207, 202);
-    padding: 5px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(211, 207, 202);
+  padding: 5px;
 }
 
 .btn-box > button:hover {
-    background-color: rgb(95, 92, 89);
-    color: white;
+  background-color: rgb(95, 92, 89);
+  color: white;
 }
 
 .counter {
-    font-size: 30px;
+  font-size: 30px;
 }

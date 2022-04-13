@@ -28,7 +28,13 @@ export const getMyDataAction = (payload: any) => ({
   payload,
 });
 export const axiosMyDataAction = () => ({ type: AXIOS_GET_MY_DATA });
-export const getNewReleasesAction = (payload:any) => ({type: GET_NEW_RELEASES, payload})
+export const getNewReleasesAction = (payload: any) => ({
+  type: GET_NEW_RELEASES,
+  payload,
+});
 export const axiosNewReleasesAction = () => ({ type: AXIOS_GET_NEW_RELEASES });
-export const getMyArtistAction = (payload:any) => ({type: GET_MY_ARTISTS, payload})
+export const getMyArtistAction = (payload: any) => ({
+  type: GET_MY_ARTISTS,
+  payload,
+});
 export const axiosMyArtistAction = () => ({ type: AXIOS_GET_MY_ARTISTS });

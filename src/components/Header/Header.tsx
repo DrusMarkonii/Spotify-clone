@@ -1,6 +1,6 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuthorizeUrl } from "../../service/authorization";
+
 import "./Header.css";
 
 export default function Header() {
@@ -17,8 +17,8 @@ export default function Header() {
   };
 
   const handleLogOut = () => {
-    localStorage.clear()
-  }
+    localStorage.clear();
+  };
 
   return (
     <div className="headerBox">
@@ -29,8 +29,11 @@ export default function Header() {
               <NavLink to={path}>{title}</NavLink>
             </li>
           ))}
-          {localStorage.getItem('accessToken') ? <button onClick={handleLogOut}>Log out</button>: <button onClick={handleLogin}>Log in</button>}
-          
+          {localStorage.getItem("accessToken") ? (
+            <button onClick={handleLogOut}>Log out</button>
+          ) : (
+            <button onClick={handleLogin}>Log in</button>
+          )}
         </ul>
       </nav>
     </div>

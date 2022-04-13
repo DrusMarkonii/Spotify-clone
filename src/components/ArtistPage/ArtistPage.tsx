@@ -17,8 +17,6 @@ export default function ArtistPage() {
   const [album, setAlbum] = useState<any>(null);
   const [topTracks, setTopTracks] = useState<any>(null);
 
-  // const idOfArtist = window.location.pathname.split("/")[2];
-
   const artistData = async (id: string) => {
     const artist = await getArtistData(id);
     setArtist(artist);

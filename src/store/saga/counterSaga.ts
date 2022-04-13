@@ -1,7 +1,7 @@
 import { put, takeEvery } from "@redux-saga/core/effects";
-import { decrementAction, incrementAction } from "../store/countReducer";
+import { decrementAction, incrementAction } from "../action-creators/count";
 
-import { ASYNC_DECREMENT, ASYNC_INCREMENT } from "../store/typesAction";
+import { ASYNC_DECREMENT, ASYNC_INCREMENT } from "../types/typesCounterAction";
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 

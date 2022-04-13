@@ -1,4 +1,4 @@
-import './AlbumCard.css'
+import "./AlbumCard.css";
 
 type AlbumCardTypes = {
   album_name: string;
@@ -18,7 +18,7 @@ export default function AlbumCard({
       </div>
       <div className="album_description_box">
         <div>{album_name}</div>
-        <div className='album_description_item'>{album_description}</div>
+        <div className="album_description_item">{album_description}</div>
       </div>
     </div>
   );

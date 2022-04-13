@@ -1,35 +1,28 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import "./App.css";
-import Counter from "../Counter";
+import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 
-import { getAuthorizeUrl, getDataFromHash, setDataInLocalStorage } from "../../service/authorization";
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
-import WebApp from "../WebApp/WebApp";
+import { setDataInLocalStorage } from "../../service/authorization";
 import ArtistPage from "../ArtistPage/ArtistPage";
 import HomePage from "../HomePage/HomePage";
 import MusicPage from "../MusicPage/MusicPage";
 import PlaylistPage from "../PlaylistPage/PlaylistPage";
 import EntertainmentPage from "../EntertainmentPage/EntertainmentPage";
 
+import "./App.css";
 
 export default function App() {
   useEffect(() => {
     if (window.location.hash) {
-      setDataInLocalStorage()
+      setDataInLocalStorage();
     }
   }, []);
-  
+
   return (
     <div className="App">
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="/my_music" element={<MusicPage />} />
         <Route path="/entertainment" element={<EntertainmentPage />} />
-        <Route  path="/webapp" element={<WebApp />} />
         <Route path="/artist/:id" element={<ArtistPage />} />
         <Route path="/playlist/:id" element={<PlaylistPage />} />
       </Routes>

@@ -1,27 +1,27 @@
 .artistPage_album_box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 70%;
-    max-width: 800px;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .artistPage_tracks_box {
-    display: flex;
-    width: 90%;
-    max-width: 600px;
-    margin: 0 auto;
-    flex-wrap: wrap;
+  display: flex;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .artist_img {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .artistPage_album_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }

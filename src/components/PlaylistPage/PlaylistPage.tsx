@@ -8,7 +8,7 @@ import "./PlaylistPage.css";
 
 export default function PlaylistPage() {
   const [tracks, setTracks] = useState<any>(null);
-  const [idOfPlaylist, setIdOfPlaylist] = useState< null | string >(null);
+  const [idOfPlaylist, setIdOfPlaylist] = useState<null | string>(null);
   const [currentPlaylist, setCurrentPlaylist] = useState<any>(null);
 
   useEffect(() => {
@@ -24,27 +24,26 @@ export default function PlaylistPage() {
     const currentPlaylist = await getCurrentPlaylist(id);
     setCurrentPlaylist(currentPlaylist);
   };
-  
+
   useMemo(() => {
     if (idOfPlaylist) {
       playlistData(idOfPlaylist);
-      currentPlaylistData(idOfPlaylist)
-
+      currentPlaylistData(idOfPlaylist);
     }
   }, [idOfPlaylist]);
-  
+
   return (
     <div>
       <Header />
       {tracks?.items && currentPlaylist ? (
         <div className="content-box_MusicPage">
           <div>
-          <h3>{currentPlaylist.name}</h3>
-          <img
-            src={currentPlaylist.images[0].url}
-            alt={currentPlaylist.description}
-            className="album_img"
-          />
+            <h3>{currentPlaylist.name}</h3>
+            <img
+              src={currentPlaylist.images[0].url}
+              alt={currentPlaylist.description}
+              className="album_img"
+            />
           </div>
           <div className="tracks-box">
             <div className="tracks-list">

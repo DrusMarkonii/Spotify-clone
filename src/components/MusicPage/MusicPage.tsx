@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../Header/Header";
 import MusicCard from "../MusicCard/MusicCard";
-import { RootState } from "../../store/rootReducer";
+import { RootState } from "../../store/reducers/rootReducer";
 import {
   axiosMyDataAction,
   axiosMyTracksAction,

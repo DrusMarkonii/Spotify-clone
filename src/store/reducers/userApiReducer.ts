@@ -1,4 +1,12 @@
-import { defaultStateUserType, GET_MY_PLAYLIST, GET_TOKEN, GET_MY_TRACKS, GET_MY_DATA, GET_NEW_RELEASES, GET_MY_ARTISTS} from "../types/userType";
+import {
+  defaultStateUserType,
+  GET_MY_PLAYLIST,
+  GET_TOKEN,
+  GET_MY_TRACKS,
+  GET_MY_DATA,
+  GET_NEW_RELEASES,
+  GET_MY_ARTISTS,
+} from "../types/userType";
 
 const defaultStateUser: defaultStateUserType = {
   token: null,
@@ -6,8 +14,7 @@ const defaultStateUser: defaultStateUserType = {
   myTracks: null,
   myData: null,
   newReleases: null,
-  myArtists: null
-
+  myArtists: null,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -18,30 +25,30 @@ const USER_Reducer = (state = defaultStateUser, action: any) => {
         ...state,
         token: action.payload,
       };
-      case GET_MY_PLAYLIST:
+    case GET_MY_PLAYLIST:
       return {
         ...state,
-        myPlaylist: action.payload
+        myPlaylist: action.payload,
       };
-      case GET_MY_DATA:
+    case GET_MY_DATA:
       return {
         ...state,
-        myData: action.payload
+        myData: action.payload,
       };
-      case GET_MY_TRACKS:
+    case GET_MY_TRACKS:
       return {
         ...state,
-        myTracks: action.payload
+        myTracks: action.payload,
       };
-      case GET_NEW_RELEASES:
+    case GET_NEW_RELEASES:
       return {
         ...state,
-        newReleases: action.payload
+        newReleases: action.payload,
       };
-      case GET_MY_ARTISTS:
+    case GET_MY_ARTISTS:
       return {
         ...state,
-        myArtists: action.payload
+        myArtists: action.payload,
       };
     default:
       return state;

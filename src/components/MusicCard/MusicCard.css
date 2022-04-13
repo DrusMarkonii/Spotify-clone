@@ -7,7 +7,7 @@
   justify-content: center;
   border-radius: 6px;
   background-color: rgba(27, 26, 26, 0.658);
-  color:rgb(163, 163, 162)
+  color: rgb(163, 163, 162);
 }
 
 .audioPlayer {
@@ -19,21 +19,21 @@
   width: 88%;
 }
 .card_img {
-    width: 100%;
-    border-radius: 6px;
+  width: 100%;
+  border-radius: 6px;
 }
 
 .description_box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    word-wrap: break-word;
-    font-size: small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  word-wrap: break-word;
+  font-size: small;
 }
 
 .description_box:hover {
-  font-size:large;
-  transition: .5s;
+  font-size: large;
+  transition: 0.5s;
 }
 
 .audioPlayer:hover {

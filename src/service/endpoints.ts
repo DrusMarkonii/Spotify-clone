@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { getAuthorizeUrl } from "./authorization";
 
 const MY_PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/me/playlists";
@@ -41,7 +42,7 @@ export const getPlayList = async () => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -56,7 +57,7 @@ export const getMyTracks = async () => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -71,7 +72,7 @@ export const getMyData = async () => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -90,7 +91,7 @@ export const getNewReleases = async () => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -109,7 +110,7 @@ export const getMyArtists = async () => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -127,7 +128,7 @@ export const getArtistData = async (idOfArtist: string) => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -145,7 +146,7 @@ export const getArtistAlbum = async (idOfArtist: string) => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -166,7 +167,7 @@ export const getArtistTopTracks = async (idOfArtist: string) => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -184,7 +185,7 @@ export const getCurrentPlaylist = async (idOfPlaylist: string) => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };
 
@@ -205,6 +206,6 @@ export const getPlaylistTracks = async (idOfPlaylist: string) => {
   } catch (err: any) {
     if (err.response.status === 400 || err.response.status === 401)
       window.location.href = getAuthorizeUrl();
-      console.log(err);
+    console.log(err);
   }
 };

@@ -1,5 +1,5 @@
-import React from "react";
 import ReactAudioPlayer from "react-audio-player";
+
 import "./MusicCard.css";
 
 type MusicCardTypes = {

@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   asyncDecrementAction,
   asyncIncrementAction,
   decrementAction,
   incrementAction,
-} from "../../store/countReducer";
-import { RootState } from "../../store/rootReducer";
-import { fetchUsers } from "../../store/usersReducer";
+} from "../../store/action-creators/count";
+import { RootState } from "../../store/reducers/rootReducer";
+import { fetchUsers } from "../../store/action-creators/getUsers";
 import Header from "../Header/Header";
-import './EntertainmentPage.css'
+
+import "./EntertainmentPage.css";
 
 export default function EntertainmentPage() {
   const counter = useSelector((state: RootState) => {
@@ -19,13 +21,11 @@ export default function EntertainmentPage() {
   });
   const dispatch = useDispatch();
   return (
-    <div >
+    <div>
       <Header />
       <div className="entertainment_content_box">
         <div className="counter">counter: {counter}</div>
-        <div
-          className="btn-box"
-        >
+        <div className="btn-box">
           <button
             onClick={() => dispatch(incrementAction())}
             style={{ marginRight: "15px" }}
@@ -62,7 +62,9 @@ export default function EntertainmentPage() {
           {users.length > 0 ? (
             <ul className="users-box-list">
               {users.map(({ name, id }: any) => (
-                <li className="users-box-item" key={id}>{name}</li>
+                <li className="users-box-item" key={id}>
+                  {name}
+                </li>
               ))}
             </ul>
           ) : (
