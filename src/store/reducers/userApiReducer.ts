@@ -1,6 +1,5 @@
 import {
   defaultStateUserType,
-  GET_MY_PLAYLIST,
   GET_TOKEN,
   GET_MY_TRACKS,
   GET_MY_DATA,

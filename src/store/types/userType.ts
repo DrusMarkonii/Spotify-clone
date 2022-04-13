@@ -1,6 +1,4 @@
 export const GET_TOKEN = "GET_TOKEN";
-export const GET_MY_PLAYLIST = "GET_MY_PLAYLIST";
-export const AXIOS_GET_MY_PLAYLIST = "AXIOS_GET_MY_PLAYLIST";
 export const GET_MY_TRACKS = "GET_MY_TRACKS";
 export const AXIOS_GET_MY_TRACKS = "AXIOS_GET_MY_TRACKS";
 export const GET_MY_DATA = "GET_MY_DATA";
