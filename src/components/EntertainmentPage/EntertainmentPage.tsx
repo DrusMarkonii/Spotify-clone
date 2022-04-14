@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -25,37 +26,26 @@ export default function EntertainmentPage() {
     return state.users.users;
   });
   const dispatch = useDispatch();
+
   return (
     <div>
       <Header />
       <div className="entertainment_content_box">
         <div className="counter">counter: {counter}</div>
         <div className="btn-box">
-          <button
-            onClick={() => dispatch(incrementAction())}
-          >
+          <button onClick={() => dispatch(incrementAction())}>
             INCREMENT++
           </button>
-          <button
-            onClick={() => dispatch(asyncIncrementAction())}
-          >
+          <button onClick={() => dispatch(asyncIncrementAction())}>
             ASYNC INCREMENT++
           </button>
-          <button
-            onClick={() => dispatch(asyncDecrementAction())}
-          >
+          <button onClick={() => dispatch(asyncDecrementAction())}>
             ASYNC DECREMENT--
           </button>
-          <button
-            onClick={() => dispatch(decrementAction())}
-          >
+          <button onClick={() => dispatch(decrementAction())}>
             DECREMENT--
           </button>
-          <button
-            onClick={() => dispatch(fetchUsers())}
-          >
-            GET USERS
-          </button>
+          <button onClick={() => dispatch(fetchUsers())}>GET USERS</button>
         </div>
 
         <div className="users-box">

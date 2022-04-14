@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {
-  axiosMyArtistAction,
-  axiosMyTracksAction,
-  axiosNewReleasesAction,
+  fetchMyArtistAction,
+  fetchMyTracksAction,
+  fetchNewReleasesAction,
 } from "../../store/action-creators/user";
 import { RootState } from "../../store/reducers/rootReducer";
 import AlbumCard from "../AlbumCard/AlbumCard";
@@ -43,9 +43,9 @@ export default function HomePage() {
   const { newReleases, myArtists, myTracks } = USER;
 
   useMemo(() => {
-    dispatch(axiosNewReleasesAction());
-    dispatch(axiosMyArtistAction());
-    dispatch(axiosMyTracksAction());
+    dispatch(fetchNewReleasesAction());
+    dispatch(fetchMyArtistAction());
+    dispatch(fetchMyTracksAction());
   }, [dispatch]);
 
   

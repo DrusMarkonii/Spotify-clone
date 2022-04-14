@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   getArtistAlbum,
@@ -41,7 +41,7 @@ export default function ArtistPage() {
     setIdOfArtist(window.location.pathname.split("/")[2]);
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     if (idOfArtist) {
       artistData(idOfArtist);
       artistAlbum(idOfArtist);

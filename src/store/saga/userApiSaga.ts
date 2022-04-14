@@ -6,10 +6,10 @@ import {
   getNewReleases,
 } from "../../service/endpoints";
 import {
-  AXIOS_GET_MY_ARTISTS,
-  AXIOS_GET_MY_DATA,
-  AXIOS_GET_MY_TRACKS,
-  AXIOS_GET_NEW_RELEASES,
+  FETCH_GET_MY_ARTISTS,
+  FETCH_GET_MY_DATA,
+  FETCH_GET_MY_TRACKS,
+  FETCH_GET_NEW_RELEASES,
   GET_MY_ARTISTS,
   GET_MY_DATA,
   GET_MY_TRACKS,
@@ -39,8 +39,8 @@ export function* loadMyArtist(): any {
 }
 
 export function* userGetDataWatcher() {
-  yield takeEvery(AXIOS_GET_MY_TRACKS, loadMyTracksWorker);
-  yield takeEvery(AXIOS_GET_MY_DATA, loadMyDataWorker);
-  yield takeEvery(AXIOS_GET_NEW_RELEASES, loadNewReleases);
-  yield takeEvery(AXIOS_GET_MY_ARTISTS, loadMyArtist);
+  yield takeEvery(FETCH_GET_MY_TRACKS, loadMyTracksWorker);
+  yield takeEvery(FETCH_GET_MY_DATA, loadMyDataWorker);
+  yield takeEvery(FETCH_GET_NEW_RELEASES, loadNewReleases);
+  yield takeEvery(FETCH_GET_MY_ARTISTS, loadMyArtist);
 }

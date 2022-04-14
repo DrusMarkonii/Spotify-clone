@@ -18,16 +18,6 @@ type myTracksType = {
   ];
 };
 
-type myTracksPropsType = {
-  track: {
-    id: string | null | undefined;
-    name: string;
-    album: { images: { url: string }[] };
-    artists: { name: string }[];
-    preview_url: string;
-  };
-};
-
 type currentPlaylistType = {
   id: string;
   name: string;
@@ -60,7 +50,7 @@ export default function PlaylistPage() {
     const currentPlaylist = await getCurrentPlaylist(id);
     setCurrentPlaylist(currentPlaylist);
   };
-  
+
   useMemo(() => {
     if (idOfPlaylist) {
       playlistData(idOfPlaylist);
@@ -83,7 +73,7 @@ export default function PlaylistPage() {
           </div>
           <div className="tracks-box">
             <div className="tracks-list">
-              {tracks.items?.map((item:any) => (
+              {tracks.items?.map((item: any) => (
                 <TrackCard
                   key={item.track.id}
                   track_name={item.track.name}

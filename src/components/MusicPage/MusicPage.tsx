@@ -1,12 +1,12 @@
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../Header/Header";
 import MusicCard from "../MusicCard/MusicCard";
 import { RootState } from "../../store/reducers/rootReducer";
 import {
-  axiosMyDataAction,
-  axiosMyTracksAction,
+  fetchMyDataAction,
+  fetchMyTracksAction,
 } from "../../store/action-creators/user";
 
 import "./MusicPage.css";
@@ -49,9 +49,9 @@ export default function MusicPage() {
   });
   const { myTracks, myData } = USER;
 
-  useMemo(() => {
-    dispatch(axiosMyTracksAction());
-    dispatch(axiosMyDataAction());
+  useEffect(() => {
+    dispatch(fetchMyTracksAction());
+    dispatch(fetchMyDataAction());
   }, [dispatch]);
 
   return (
