@@ -26,7 +26,7 @@ export const getAuthorizeUrl = () => {
   url += "response_type=token";
   url += "&client_id=" + Client_ID;
   url += "&scope=" + scope.join("+");
-  url += "&redirect_uri=http://localhost:3000";
+  url += "&redirect_uri=http://localhost:3000/";
   return url;
 };
 

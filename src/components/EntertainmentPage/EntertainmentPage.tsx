@@ -33,30 +33,25 @@ export default function EntertainmentPage() {
         <div className="btn-box">
           <button
             onClick={() => dispatch(incrementAction())}
-            style={{ marginRight: "15px" }}
           >
             INCREMENT++
           </button>
           <button
             onClick={() => dispatch(asyncIncrementAction())}
-            style={{ marginRight: "15px" }}
           >
             ASYNC INCREMENT++
           </button>
           <button
             onClick={() => dispatch(asyncDecrementAction())}
-            style={{ marginRight: "15px" }}
           >
             ASYNC DECREMENT--
           </button>
           <button
             onClick={() => dispatch(decrementAction())}
-            style={{ marginRight: "15px" }}
           >
             DECREMENT--
           </button>
           <button
-            style={{ marginRight: "15px" }}
             onClick={() => dispatch(fetchUsers())}
           >
             GET USERS

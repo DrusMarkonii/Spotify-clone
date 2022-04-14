@@ -4,6 +4,12 @@ import { getAuthorizeUrl } from "../../service/authorization";
 import "./Header.css";
 
 export default function Header() {
+  type navigationType = {
+    id: number;
+    title: string;
+    path: string;
+  };
+
   const navigate = useNavigate();
   const navigation = [
     { id: 1, title: "Spotify", path: "/" },
@@ -24,7 +30,7 @@ export default function Header() {
     <div className="headerBox">
       <nav>
         <ul className="navList">
-          {navigation.map(({ id, title, path }) => (
+          {navigation.map(({ id, title, path }: navigationType) => (
             <li key={id} className="navbar__list__item">
               <NavLink to={path}>{title}</NavLink>
             </li>

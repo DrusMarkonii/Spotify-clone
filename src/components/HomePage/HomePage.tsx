@@ -48,7 +48,7 @@ export default function HomePage() {
     dispatch(axiosMyTracksAction());
   }, [dispatch]);
 
-  console.log(myTracks);
+  
 
   return (
     <div>

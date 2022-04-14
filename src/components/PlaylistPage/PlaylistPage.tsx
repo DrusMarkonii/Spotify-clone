@@ -6,10 +6,46 @@ import TrackCard from "../TrackCard/TrackCard";
 
 import "./PlaylistPage.css";
 
+type myTracksType = {
+  items: [
+    track: {
+      id: string | null | undefined;
+      name: string;
+      album: { images: { url: string }[] };
+      artists: { name: string }[];
+      preview_url: string;
+    }
+  ];
+};
+
+type myTracksPropsType = {
+  track: {
+    id: string | null | undefined;
+    name: string;
+    album: { images: { url: string }[] };
+    artists: { name: string }[];
+    preview_url: string;
+  };
+};
+
+type currentPlaylistType = {
+  id: string;
+  name: string;
+  images: [
+    {
+      height: null;
+      url: string;
+      width: null;
+    }
+  ];
+  description: string;
+};
+
 export default function PlaylistPage() {
-  const [tracks, setTracks] = useState<any>(null);
-  const [idOfPlaylist, setIdOfPlaylist] = useState<null | string>(null);
-  const [currentPlaylist, setCurrentPlaylist] = useState<any>(null);
+  const [tracks, setTracks] = useState<myTracksType | null>(null);
+  const [idOfPlaylist, setIdOfPlaylist] = useState<string | null>(null);
+  const [currentPlaylist, setCurrentPlaylist] =
+    useState<currentPlaylistType | null>(null);
 
   useEffect(() => {
     setIdOfPlaylist(window.location.pathname.split("/")[2]);
@@ -24,7 +60,7 @@ export default function PlaylistPage() {
     const currentPlaylist = await getCurrentPlaylist(id);
     setCurrentPlaylist(currentPlaylist);
   };
-
+  
   useMemo(() => {
     if (idOfPlaylist) {
       playlistData(idOfPlaylist);
@@ -47,7 +83,7 @@ export default function PlaylistPage() {
           </div>
           <div className="tracks-box">
             <div className="tracks-list">
-              {tracks.items?.map((item: any) => (
+              {tracks.items?.map((item:any) => (
                 <TrackCard
                   key={item.track.id}
                   track_name={item.track.name}

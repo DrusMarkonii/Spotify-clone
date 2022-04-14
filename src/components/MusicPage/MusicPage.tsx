@@ -11,6 +11,37 @@ import {
 
 import "./MusicPage.css";
 
+type myTrackType = {
+  track: {
+    id: string;
+    name: string;
+    preview_url: string;
+    album: {
+      images:
+        | [
+            {
+              height: number;
+              url: string;
+              width: number;
+            }
+          ]
+        | any;
+    };
+    artists: [
+      {
+        href: string;
+        id: string;
+        name: string;
+        type: string;
+        uri: string;
+        external_urls: {
+          spotify: string;
+        };
+      }
+    ];
+  };
+};
+
 export default function MusicPage() {
   const dispatch = useDispatch();
   const USER = useSelector((state: RootState) => {
@@ -31,7 +62,7 @@ export default function MusicPage() {
           <h3>Your music, {myData.display_name}</h3>
           <div className="content_box musicPage">
             <div className="musicList">
-              {myTracks.items.map((item: any) => (
+              {myTracks.items.map((item: myTrackType) => (
                 <MusicCard
                   key={item.track.id}
                   track_name={item.track.name}
